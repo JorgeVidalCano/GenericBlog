@@ -1,0 +1,71 @@
+{% extends "blog/baseContent.html" %}
+{% block contentWeb %}
+    <div class="container bootstrap snippet">
+        <div id="head" class="row">
+            <div class="col-sm-10">
+                <h1>@{{ username|capfirst }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <!--/col-3-->
+            <div class="col-sm-12">
+                <div class="tab-content">
+                    <div class="" id="home">
+                        <div class="table-responsive table-light">
+                            <table id="tableContent" class="table table-hover">
+                                <thead>
+                                    <tr class="table-active">
+                                        <th></th>
+                                        {% for f in fields %}
+                                        <th class="font-weight-normal" scope="col">{{ f }}</th>
+                                        {% endfor %}
+                                        <th class="font-weight-normal text-center" colspan="2">Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="items">
+                                    <form id="publish_post_form" method="POST" data-url="{{ request.build_absolute_uri|safe }}">
+                                    {% csrf_token %} 
+                                    {% for p in posts %}
+                                    <tr>
+                                        <td scope="row">{{ forloop.counter }}</td>
+                                        <td><a href="{% url 'post-detail' p.slug %}">{{ p.title }}</a></td>
+                                        <td>{{ p.countComments }}</td>
+                                        <td>{{ p.countLikes }}</td>
+                                        <td>{{ p.countUnlikes }}</td>
+                                        <td>{{ p.slug }}</td>
+                                        <td>{{ p.date_posted }}</td>
+                                        <td class="p-0 text-center">
+                                            <div class="custom-checkbox custom-control">
+                                                <input data-id="{{ forloop.counter }}" type="checkbox" id="inputPublish" data-checkboxes="mygroup" class="form-check-input" id="{{ p.title|truncatechars:8}}" value="{{ p.publish }}" {% if p.publish %} checked {% endif %} onchange="$('#publish_post_form').submit();" >
+                                                <label for="{{ p.title|truncatechars:8}}" class="form-check-label"></label>
+                                                <input class="{{ p.slug }}Slug" type="hidden" name="slugPost" value="{{ p.slug }}">
+                                                <input class="{{ p.slug }}Publish" type="hidden" name="publishPost" value="{{ p.publish }}">
+                                            </div>
+                                        </td>
+                                        <td><a href="{% url 'post-update' p.slug %}" class="btn btn-secondary btn-sm">Edit</a></td>
+                                        <td><a href="{% url 'post-delete' p.slug %}" class="btn btn-danger btn-sm">Delete</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </form>
+                                </tbody>
+                            </table> 
+                        </div>
+                        <!--/table-resp-->
+                        <hr>
+                    </div>
+                </div>
+                <!--/tab-pane-->
+            </div>
+            <!--/tab-content-->
+        </div>
+        <!--/col-9-->
+    </div>
+    <!--/row-->
+{% endblock contentWeb %}
+{% load static %}
+{% block js %}
+    <script type="text/javascript" src="{% static 'blog/javascript/addComments.js' %}"></script>
+{% endblock js %}
+
+
+<!-- <td><a id="deletePost" href="{% url 'post-delete' p.slug %}" class="btn btn-danger btn-sm">Delete</a></td> -->

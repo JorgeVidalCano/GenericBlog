@@ -1,0 +1,47 @@
+<!--Navbar-->
+{% load configBlog %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    {% logo %}
+    {% brandName %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'blog-home' %}">Home</a>
+        </li>
+        {% if user.is_superuser %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'my-posts' %}">My posts</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'post-create' %}">New post
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        {% endif %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {% if user.is_authenticated %} @{{ user.username|title }} {% else %} Login {% endif %}</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown04">
+            {% if user.is_authenticated %}
+              <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+              <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+              <a class="dropdown-item" href="{% url 'register' %}">Create account</a>
+            {% endif %}
+          </div>
+        </li>
+        {% if user.is_superuser %}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Admin</a>
+          </li>
+        {% endif %}
+        <a class="nav-link" href="{% url 'blog-about' %}">About me
+        </a>
+      </ul>
+    </div>
+  </div>
+</nav>

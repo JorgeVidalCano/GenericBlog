@@ -1,0 +1,11 @@
+<ul class="list-inline text-center">
+    {% for s in social %}
+        <li class="list-inline-item">
+            <a href="{{s.url}}" target="blank" title="{{ s.name }}">
+                <div class="view overlay zoom">
+                <img width="40px"  class="hoverable img-fluid rounded-circle" src="{{ s.logo.url }}" alt="{{ s.name }}">
+            </div>
+            </a>
+        </li>
+    {% endfor %}
+</ul>

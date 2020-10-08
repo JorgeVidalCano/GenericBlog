@@ -1,0 +1,24 @@
+{% extends "blog/baseContent.html" %}
+{% block content %}
+
+<!-- Blog Entries Column -->
+<div class="col-md-8">
+    <h1 class="my-4">{{title}}</h1>
+    <!-- Blog Post -->
+    {% for post in posts %}
+    <div class="card mb-4">
+        <img class="border card-img-top" src="{{ post.PostImages.url }}" alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-title">{{ post.title|title }}</h2>
+            {% include "shareblocks/likeDislike.html" %}
+            {% include "TagPost/tags.html" %}
+            <p class="card-text">{{ post.content|truncatewords:35|safe }}</p>
+            <a href="{% url 'post-detail' post.slug %}" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+        Posted on {{ post.date_posted|date:"d-F-Y" }} by <span class="text-primary">@{{ post.author|capfirst }}</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

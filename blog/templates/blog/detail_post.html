@@ -1,0 +1,42 @@
+{% extends "blog/baseContent.html" %}
+
+{% block content %}
+
+<!-- Post Content Column -->
+<div class="col-lg-8">
+    <!-- Title -->
+    <h1 class="mt-4">{{ post.title|capfirst }}</h1>
+   
+    <hr>
+    <!-- Image -->
+
+    <img class="img-fluid rounded" src="{{ post.PostImages.url }}" alt="{{ post.PostImages.name }}">
+
+    <hr>
+    <!-- Post Content -->
+    <p class="lead">{{ post.content | safe }}</p>
+    <hr>
+    <!-- Author -->
+    {% include "shareblocks/likeDislike.html" %}
+    {% include "TagPost/tags.html" %}
+    <div class="article-metadata">
+        <p class="small">
+            By <span class="text-primary ">@{{ post.author|capfirst }}</span>
+        </p>
+        <p class="small">Posted on  <span class="text-secondary ">{{ post.date_posted|date:"d M Y" }}</span></p>
+    </div>
+    
+    <div class="article-metadata">
+        {% if user.is_superuser %} 
+        <a href="{% url 'post-update' post.slug %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
+        <a href="{% url 'post-delete' post.slug %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete</a>
+        {% endif %}
+    </div>
+
+    {% include "comments/comments.html" %}
+</div>
+{% endblock content %}
+{% load static %}
+{% block js %}
+    <script type="text/javascript" src="{% static 'blog/javascript/addComments.js' %}"></script>
+{% endblock js %}

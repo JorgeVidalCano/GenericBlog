@@ -1,0 +1,20 @@
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4">
+    <!-- Search Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+        
+            <form id="searchFormId" class="" action="{% url 'search-results' %}" method="get">
+                <input id="inputFormId" class="form-control" name="q" type="text" placeholder="Search..." autocomplete="off">
+            </form>
+        
+        </div>
+    </div>
+    {% load blogTags %}
+    {% PostTagLinks %}
+    {% load mailchimp %}
+    {% if user.is_authenticated %}
+        {% subscribeNewsletter %}
+    {% endif  %}
+</div>

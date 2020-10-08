@@ -1,0 +1,17 @@
+    <!-- Categories Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Tags</h5>
+        <div class="card-body">
+            <div class="row">
+            {% for t in tags %}
+                <div class="col-lg-6">
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="{% url 'post-filter' t.slug %}"><span class="badge badge-warning">{{t.tag}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>

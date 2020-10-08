@@ -1,0 +1,49 @@
+{% extends "blog/base.html" %}
+{% block style %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'blog/formStyle.css' %}">
+{% endblock style %}
+
+{% block contentWeb %}
+<div class="container">
+  <div class="text-center p-4">
+    <h1 class="h3 font-weight-normal">{{titlePage}}</h1>
+  </div>
+  <div class="col-md-8">
+      {% include "blog/messages.html" %} {% comment %} loads error messages {% endcomment %}
+      <form class="form-signin" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} 
+        {% for field in form %}
+        <div class="form-label-group">
+          {% if field.name == "content" %}{{ form.media }} {% endif %}
+          {% if field.name == "publish" or field.name == "postImage" %}
+          {{ field.label_tag|cut:":" }}
+          {{ field }}
+          {% else %}
+          {{ field }}
+          {{ field.label_tag|cut:":" }}
+          {% endif %}
+        </div>
+        {% endfor %}
+        <div class="text-center">
+          <a class="btn btn-secondary" href="{% url 'tag' %}">Add new tag</a>
+        </div>
+        <div class="text-center p-4">
+        {% include "TagPost/tags.html" %}
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Publish</button>
+      </div>
+    </form>
+    </div>
+    <div class="col-md-8">
+      {% include "blog/messages.html" %} {% comment %} loads error messages {% endcomment %}
+      
+    </div>
+      
+    
+  </div>
+{% endblock contentWeb %}
+{% block js %}
+    <script type="text/javascript" src="{% static 'blog/javascript/forms.js' %}"></script>
+{% endblock js %}
+

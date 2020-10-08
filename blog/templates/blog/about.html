@@ -1,0 +1,18 @@
+{% extends "blog/baseContent.html" %}
+{% block content %}
+<div class="col-lg-8">
+    <section class="cid-raT702HXd8" id="features1-1">
+         <div class="container">
+            <h1 class="mbr-fonts-style mbr-section-title align-center display-3">About the blog</h1>
+            <div class="row justify-content-center pt-5">
+                {% for a in about %}
+                <div class="bg-info rounded border border color-light col-md-6 row-item col-lg-3">
+                    <h4 class="text-center mbr-fonts-style mbr-card-title display-5 pt-2">{{ a.title }}</h4>
+                    <p class="mbr-text mbr-fonts-style display-7">{{ a.content }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock content %}

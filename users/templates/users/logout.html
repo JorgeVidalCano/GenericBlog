@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+
+{% block style %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'blog/403.css' %}">
+{% endblock style %}
+{% block contentWeb %}
+
+<section class="h-100 banner-area relative"></section>
+  <div class="p-3 container">
+    <div class=" row fullscreen align-items-center justify-content-center">
+      <div class="banner col-lg-12">
+          <h1 class="text-dark text-center font-weight-bold">Log out</h1>
+          <h4 class="text-muted text-center">You have been <b>logout</b>.</h4>
+          <h6 class="text-muted text-center">We'll see you back soon!</h6>
+        </div>
+        <img class="img-fluid" src="/media/img/logout.png" alt="Logout">        
+    </div>
+  </div>
+</section>
+
+{% endblock contentWeb %}

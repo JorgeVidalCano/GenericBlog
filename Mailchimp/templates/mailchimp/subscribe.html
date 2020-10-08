@@ -1,0 +1,9 @@
+<div class="card my-4">
+    <h5 class="card-header">{{ subscription }}</h5>
+    <div class="card-body">
+        <form id="mailChimpSubs" class="form-class" action="{% url 'postMailChimp' %}" method="post">
+            {% csrf_token %} 
+            {{ subscribeForm }}
+        </form>
+    </div>
+</div>

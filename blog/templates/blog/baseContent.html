@@ -1,0 +1,9 @@
+{% extends "blog/base.html" %}
+{% block contentWeb %}
+<div class="container">
+    <div class="row">
+    {% block content %} {% endblock content %}
+    {% include "shareblocks/sidebar.html" %}
+    </div>
+</div>
+{% endblock contentWeb %}

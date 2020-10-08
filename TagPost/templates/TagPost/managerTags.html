@@ -1,0 +1,46 @@
+{% extends "blog/base.html" %}
+{% block style %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'blog/formStyle.css' %}">
+{% endblock style %}
+
+{% block contentWeb %}
+    <div class="container">
+              
+    <div class="card my-4">
+        <h5 class="card-header">Tags</h5>
+        <div class="card-body">
+            <div id="rowTag" class="row">
+            {% for t in tags %}
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <span class="badge badge-warning">{{t.tag}}</span>
+                        </li>
+                    </ul>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<form class="form-signin" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {% for field in form %}
+    <div class="form-label-group">
+
+      {{ field }}
+      {{ field.label_tag|cut:":" }}
+      
+    </div>
+    {% endfor %}
+    
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Publish</button>
+  </div>
+</form>
+
+{% endblock contentWeb %}
+{% block js %}
+    <script type="text/javascript" src="{% static 'tagPost/javascript/tags.js' %}"></script>
+{% endblock js %}

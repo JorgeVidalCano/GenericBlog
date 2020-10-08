@@ -1,0 +1,60 @@
+<!-- Comments Form -->
+<div class="card my-4">
+    <h5 class="card-header">Leave a Comment:</h5>
+    <div class="card-body">
+        {% if user.is_authenticated %}
+        <form id="comment_form_id" method="POST" data-url="{{ request.build_absolute_uri|safe }}comment/add">
+            {% csrf_token %} 
+            
+            {% for field in form %}
+            <div class="form-label-group">
+                {{field}}
+                {{field.label_tag}}
+            </div>
+            {% endfor %}
+        
+            <button id="addComment" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        {% else %}
+            <a class="btn btn-outline-primary" href="{% url 'login' %}">Login</a>
+            <a class="btn btn-outline-info" href="{% url 'register' %}">Create account</a>
+        {% endif %}
+    </div>
+</div>
+<!-- Single Comment -->
+<div id="comments">
+{% for comment in comments %}
+{% if comment.authorComment.user == user %}
+    <div class="media mb-4 comment">
+        <div class="imgProfileContainer">
+            <img class="imgProfile" src="{{ comment.authorComment.profileImage.url }}" alt="{{ comment.authorComment.profileImage.name }}">
+        </div>
+        <div class="media-body">
+            <h5 class="mt-0">@{{comment.authorComment.user.username|capfirst}}</h5>
+            <small class="small">{{ comment.comment_date|date:"d M Y" }}</small>
+            <form method="POST" class="update_comment_form_id">
+                {% csrf_token %} 
+                <a class="btn btn-outline-primary btn-sm updateComment" href="{% url 'comments:update-comment' post.slug comment.pk %}">Update</a>
+                <a class="btn btn-outline-danger btn-sm deleteComment" href="{% url 'comments:remove-comment' post.slug comment.pk %}">Delete</a>
+                <div class="form-label-group mt-2">
+                    <textarea class="form-control" rows="3" type="text" name="comment">{{ comment }}</textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="media mb-4 comment">
+        <div class="media-body">
+            <h5 class="mt-0">@{{comment.authorComment.user.username|capfirst}}</h5>
+            <small class="small">{{ comment.comment_date|date:"d M Y" }}</small>            
+            <div class="form-label-group">
+                <textarea class="form-control" rows="3" type="text" disabled>{{ comment }}</textarea>
+            </div>
+        </div>
+        <div class="imgProfileContainer">
+            <img class="imgProfile" src="{{ comment.authorComment.profileImage.url }}" alt="{{ comment.authorComment.profileImage.name }}">
+        </div>    
+    </div>
+    {% endif %}
+{% endfor %}
+</div>
