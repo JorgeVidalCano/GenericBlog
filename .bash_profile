@@ -4,3 +4,7 @@ export DEBUG_VALUE="True"
 export MAILCHIMP_API_KEY="10d4459763106439de087a5b7b3458d5-us2"
 export MAILCHIMP_DATA_CENTER="us2"
 export MAILCHIMP_EMAIL_LIST_ID="eea2dfe7d1"
+
+for file in ~/.{bash_prompt,aliases,private}; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
