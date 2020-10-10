@@ -1,4 +1,5 @@
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -8,12 +9,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&wq8^40a&*f$haq)z3sm8db!!^&6c46e$#+h5r%x3b*9e$r^=h'
+#SECRET_KEY = '&wq8^40a&*f$haq)z3sm8db!!^&6c46e$#+h5r%x3b*9e$r^=h'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = False
+DEBUG = os.environ.get("DEBUG")
 
-ALLOWED_HOSTS = ['localhost','blog-jorge-vidal-cano.herokuapp']
+ALLOWED_HOSTS = ['localhost','blog-jorge-vidal-cano.herokuapp.com']
 
 
 # Application definition
@@ -87,16 +90,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djangoBlog.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blogApp',
-        'USER': 'jorge',
-        'PASSWORD': 'f0S&noy71$',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'blogApp',
+#         'USER': 'jorge',
+#         'PASSWORD': 'f0S&noy71$',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
@@ -204,6 +207,12 @@ LOGIN_REDIRECT_URL = "blog-home"
 LOGOUT_REDIRECT_URL = "blog-home"
 LOGIN_URL = 'login'
 
-MAILCHIMP_API_KEY = "10d4459763106439de087a5b7b3458d5-us2"
-MAILCHIMP_DATA_CENTER = "us2"
-MAILCHIMP_EMAIL_LIST_ID = "eea2dfe7d1"
+#MAILCHIMP_API_KEY = "10d4459763106439de087a5b7b3458d5-us2"
+#MAILCHIMP_DATA_CENTER = "us2"
+#MAILCHIMP_EMAIL_LIST_ID = "eea2dfe7d1"
+
+MAILCHIMP_API_KEY = os.environ.get("MAILCHIMP_API_KEY")
+MAILCHIMP_DATA_CENTER = os.environ.get("MAILCHIMP_DATA_CENTER")
+MAILCHIMP_EMAIL_LIST_ID = os.environ.get("MAILCHIMP_EMAIL_LIST_ID")
+
+django_heroku.settings(locals())
