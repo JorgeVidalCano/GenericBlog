@@ -1,0 +1,96 @@
+body {
+  padding-top: 56px;
+}
+.avatar-pic {
+width: 150px;
+}
+#navBar{
+  background-color: #4F4964;
+  color: #F6F4F6;
+}
+
+#footerBar {
+  background-color: #615B77;
+  color: #F6F4F6; 
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+.avatar-pic {
+  width: 150px;
+}
+
+.imgProfileContainer {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.imgProfile {max-width: 100%;}
+
+* {
+  box-sizing: border-box;
+ }
+ 
+ *:before,
+ *:after {
+  box-sizing: border-box;
+ }
+
+ html,
+ body {
+  height: 100%;
+  position: relative;
+ }
+ .main-container {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 100px; /* height of your footer */
+ }
+ footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+ }
+
+ a:hover{
+   text-decoration: none;
+ }
+
+.searchResult{
+  background-color: #e7f0ff;
+ }
+.searchResult:hover{
+  background-color: #b8c1d0;
+}
+
+.searchImg{
+  max-width: 90%;
+}
+
+@media (max-width: 768px) {
+  .searchImg{
+    display: none;
+  }
+}   
+
+.btn.btn-outline-primary.updateComment{
+  display: none;
+}
+.btn.btn-outline-danger.btn-sm.deleteComment{
+  display: none;
+}
+textarea:disabled{
+  background-color: white !important;
+}
