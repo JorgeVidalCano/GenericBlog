@@ -21,12 +21,9 @@ from django.views.generic import(
      TemplateView
     )
 from django.views import View
-
 from django.http import JsonResponse
-
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-
 from django.core.paginator import Paginator
 import re
 import json
