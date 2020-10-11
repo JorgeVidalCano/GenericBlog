@@ -1,7 +1,8 @@
-// Adds comments 
+// Search bar
 $(document).ready(function () {    
   var $myForm = $("#inputFormId")
   $myForm.keydown(function(event){
+    var instance = JSON.parse(data["instance"]);
 
       var $formData = $(this).serialize();
       var $endpoint = window.location.origin + "/search/ajaxSearch"
@@ -29,7 +30,7 @@ $(document).ready(function () {
                               </div>
                             </div>
                             <div class="col-lg-5 col-md-5 align-items-center flex-row-reverse">
-                                <img class="searchImg float-left" src="/media/${instance[i].PostImages}">
+                                <img class="searchImg float-left" src="${instance[i].PostImages}">
                             </div>
                           </div>
                         </a>
