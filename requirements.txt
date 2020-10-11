@@ -5,6 +5,8 @@ asgiref==3.2.7
 auto-py-to-exe==2.7.5
 beautifulsoup4==4.9.1
 billiard==3.3.0.23
+boto3==1.15.16
+botocore==1.18.16
 bottle==0.12.18
 bottle-websocket==0.2.9
 celery==3.1.26.post2
@@ -19,6 +21,7 @@ django-heroku==0.3.1
 django-js-asset==1.2.2
 django-quill-editor==0.1.5
 django-reusable-components==0.2.3
+django-storages==1.10.1
 Eel==0.12.4
 future==0.18.2
 gevent==20.6.2
@@ -26,6 +29,7 @@ gevent-websocket==0.10.1
 greenlet==0.4.16
 gunicorn==20.0.4
 idna==2.10
+jmespath==0.10.0
 kombu==3.0.37
 mailchimp-marketing==3.0.15
 mailchimp3==3.0.14
@@ -36,6 +40,7 @@ PyInstaller==3.6
 python-dateutil==2.8.1
 pytz==2019.3
 requests==2.24.0
+s3transfer==0.3.3
 six==1.15.0
 soupsieve==2.0.1
 sqlparse==0.3.1
