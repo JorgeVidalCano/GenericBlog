@@ -45,16 +45,14 @@ class AjaxSearchView(ListView):
             posts = []
             post = {}
 
-            for p in post_list.object_list:
+            for p in post_list:
                 post = {
                     "title": p.title.title(),
                     "image": p.PostImages.url,
                     "slug": p.slug,
                 }
                 posts.append(post)
-
             instance = json.dumps(list(posts))
-            print("INSTANCE", instance)
             return JsonResponse({"instance": instance}, status=200)
 
 class AjaxPostList(ListView):
