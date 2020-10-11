@@ -51,9 +51,7 @@ class AjaxSearchView(ListView):
                     "image": p.PostImages.url,
                     "slug": p.slug,
                 }
-                
                 posts.append(post)
-            return posts
 
             instance = json.dumps(list(posts))
             print("INSTANCE", instance)
