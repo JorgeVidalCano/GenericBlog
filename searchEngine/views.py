@@ -38,8 +38,25 @@ class AjaxSearchView(ListView):
             if query is None:
                 return JsonResponse({"error": "No results"}, status=400)
             
-            post_list = Post.objects.filter( Q(title__icontains=query) & Q(publish=True) ).values("title", "slug", "PostImages__url")[:6]
-            instance = json.dumps(list(post_list))    
+            #post_list = Post.objects.filter( Q(title__icontains=query) & Q(publish=True) ).values("title", "slug", "PostImages__url")[:6]
+
+            post_list = Post.objects.filter( Q(title__icontains=query) & Q(publish=True) )
+
+            posts = []
+            post = {}
+
+            for p in post_list.object_list:
+                post = {
+                    "title": p.title.title(),
+                    "image": p.PostImages.url,
+                    "slug": p.slug,
+                }
+                
+                posts.append(post)
+            return posts
+
+            instance = json.dumps(list(posts))
+            print("INSTANCE", instance)
             return JsonResponse({"instance": instance}, status=200)
 
 class AjaxPostList(ListView):
@@ -74,7 +91,7 @@ class AjaxPostList(ListView):
     def getPosts(self, page_post):
         # we get the 5 posts and serialize them
         posts = self.preserializer(page_post)
-        ser_instance = json.dumps(list(posts))    
+        ser_instance = json.dumps(list(posts))
         
         return ser_instance
 
