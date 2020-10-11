@@ -1,5 +1,5 @@
-import os
 import django_heroku
+import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader', # upload img in text Editor
     'django_components', # allows reusability of code in different apps 
     'google_analytics',
+    'storages',
+
 
     # my apps
     'comments.apps.CommentsConfig',
@@ -191,8 +193,20 @@ LOGIN_REDIRECT_URL = "blog-home"
 LOGOUT_REDIRECT_URL = "blog-home"
 LOGIN_URL = 'login'
 
+#Mailchimp
 MAILCHIMP_API_KEY = os.environ.get("MAILCHIMP_API_KEY")
 MAILCHIMP_DATA_CENTER = os.environ.get("MAILCHIMP_DATA_CENTER")
 MAILCHIMP_EMAIL_LIST_ID = os.environ.get("MAILCHIMP_EMAIL_LIST_ID")
+
+# Save images
+AWS_ACCESS_KEY_ID=os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY=os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME=os.environ.get("AWS_STORAGE_BUCKET_NAME")
+
+AWS_S3_FILE_OVERWRITE=False # Rename a file if the name is the same to a previous one
+AWS_DEFAULT_ACL=None
+
+DEFAULT_FILE_STORAGE="storages.backends.s3boto3.S3Boto3Storage"
+
 
 django_heroku.settings(locals())
