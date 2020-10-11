@@ -38,12 +38,12 @@ class AjaxSearchView(ListView):
             if query is None:
                 return JsonResponse({"error": "No results"}, status=400)
             
-            post_list = Post.objects.filter( Q(title__icontains=query) & Q(publish=True) ).values("title", "slug", "PostImages")[:6]
+            post_list = Post.objects.filter( Q(title__icontains=query) & Q(publish=True) ).values("title", "slug", "PostImages.url")[:6]
             instance = json.dumps(list(post_list))    
             return JsonResponse({"instance": instance}, status=200)
 
 class AjaxPostList(ListView):
-
+    #loads new post in the home
     def get(self, request, *args, **kwargs):
         
         

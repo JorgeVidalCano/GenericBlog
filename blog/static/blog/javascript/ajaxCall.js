@@ -29,7 +29,7 @@ $(document).ready(function () {
                               </div>
                             </div>
                             <div class="col-lg-5 col-md-5 align-items-center flex-row-reverse">
-                                <img class="searchImg float-left" src="/staticfiles/${instance[i].PostImages}">
+                                <img class="searchImg float-left" src="${instance[i].PostImages}">
                             </div>
                           </div>
                         </a>
